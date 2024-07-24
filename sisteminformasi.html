@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Informasi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+        #landing-page, #menu-page, #content-page {
+            display: none;
+            width: 100%;
+            flex: 1;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+        #landing-page {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        #landing-page img {
+            max-width: 100%;
+            max-height: 100vh;
+            width: auto;
+            height: auto;
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #home-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: none; /* Initially hidden */
+        }
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: absolute;
+            top: 80px; /* Adjust as needed */
+            left: 20px;
+        }
+        #content-page .content-container {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            max-width: 80%;
+            margin: 0 auto;
+        }
+        #content-page p {
+            max-width: 600px;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            text-align: left;
+            white-space: pre-wrap;
+        }
+        #content-page img {
+            max-width: 300px;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            position: relative;
+            width: 100%;
+            display: none; /* Initially hidden */
+            box-sizing: border-box;
+        }
+        .footer-left, .footer-right {
+            flex: 1;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+        .footer-left {
+            text-align: left;
+            display: inline-block;
+        }
+        .footer-right {
+            text-align: right;
+            display: inline-block;
+        }
+        @media (max-width: 600px) {
+            footer {
+                display: block;
+                text-align: left;
+                padding: 10px;
+            }
+            .footer-left, .footer-right {
+                display: block;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="landing-page">
+        <img src="file:///D:/UAS%20SISTEM%20INFORMASI/utama.jpg" alt="Landing Image">
+        <button class="button" onclick="showMenu()">Masuk ke Menu</button>
+    </div>
+
+    <div id="menu-page">
+        <button id="home-button" class="button" onclick="showHome()">Home</button>
+        <div class="button-group">
+            <button class="button" onclick="showSection('observasi')">Observasi</button>
+            <button class="button" onclick="showSection('wawancara')">Wawancara</button>
+            <button class="button" onclick="showSection('kesimpulan')">Kesimpulan</button>
+        </div>
+    </div>
+
+    <div id="content-page">
+        <button id="home-button" class="button" onclick="showHome()">Home</button>
+        <div class="content-container">
+            <p id="content-text"></p>
+            <img id="content-image" src="" alt="Content Image">
+        </div>
+        <button class="button" id="back-button" onclick="showMenu()">Kembali ke Menu</button>
+    </div>
+
+    <footer id="footer">
+        <div class="footer-left">
+            DISUSUN OLEH:<br>
+            1. KRYSTIN ORDINA OPAT (237111048)<br>
+            2. MARIA JUANA AVIRA SAHANG (237111050)<br>
+            3. MERNI NOLDIYANI PUTRI BENGGU (237111051)<br>
+            4. TRESLY HEDIANA WULANDARI SEDE (237111061)
+        </div>
+        <div class="footer-right">
+            UNIVERSITAS CITRA BANGSA<br>
+            FAKULTAS KEGURUAN DAN ILMU PENDIDIKAN<br>
+            PROGRAM STUDI PENDIDIKAN INFORMATIKA<br>
+            KUPANG 2024
+        </div>
+    </footer>
+
+    <script>
+        function showHome() {
+            document.getElementById('landing-page').style.display = 'flex';
+            document.getElementById('menu-page').style.display = 'none';
+            document.getElementById('content-page').style.display = 'none';
+            document.getElementById('home-button').style.display = 'none';
+            document.getElementById('footer').style.display = 'none'; // Hide footer on landing page
+        }
+
+        function showMenu() {
+            document.getElementById('landing-page').style.display = 'none';
+            document.getElementById('menu-page').style.display = 'flex';
+            document.getElementById('content-page').style.display = 'none';
+            document.getElementById('home-button').style.display = 'block';
+            document.getElementById('footer').style.display = 'block'; // Show footer on menu page
+        }
+
+        function showSection(section) {
+            document.getElementById('landing-page').style.display = 'none';
+            document.getElementById('menu-page').style.display = 'none';
+            document.getElementById('content-page').style.display = 'flex';
+            document.getElementById('home-button').style.display = 'block';
+            document.getElementById('footer').style.display = 'block'; // Show footer on content page
+
+            var contentText = '';
+            var contentImageSrc = '';
+            switch(section) {
+                case 'observasi':
+                    contentText = 'Konten Observasi belum tersedia.';
+                    contentImageSrc = ''; // Jika tidak ada gambar untuk observasi, tetap kosong.
+                    break;
+                case 'wawancara':
+                    contentText = '1. Dengan ibu siapa? (penjaga perpus)\nJawab: Ibu Heni\n\n2. Bagaimana prosedur pengembalian buku di perpustakaan ini?\nProsedur pengembalian:\n- Pengecekan NIM peminjam, lalu transaksi NIM\n- Nomor buku yang dipinjam\n\n3. Apakah ada denda atau sanksi khusus yang diberikan jika terlambat pengembalian buku?\n- Memberikan denda/sanksi peminjam harus membayar 1 per hari.\n\n4. Jika sanksi sudah diberikan namun tidak ada respon dari sang peminjam, apakah ada tindakan lanjut dari perpustakaan?\n- Tindak lanjut yang diberikan yaitu dengan menahan KTM sang peminjam yang diberikan saat proses peminjaman sebagai jaminan.';
+                    contentImageSrc = 'file:///D:/UAS%20SISTEM%20INFORMASI/wawancara1.jpg';
+                    break;
+                case 'kesimpulan':
+                    contentText = 'Hasil observasi pengembalian buku di perpustakaan menunjukkan bahwa prosesnya umumnya berjalan efisien dengan kepatuhan pengguna yang cukup baik. Kendala yang ditemui meliputi keterlambatan pengembalian, kerusakan buku. Terlambat pengembalian akan diberikan sanksi dan KTM sebagai penjamin. Rekomendasi perbaikan meliputi peningkatan sosialisasi, penambahan mesin pengembalian otomatis, penerapan sistem denda yang lebih efektif, dan pengembangan aplikasi perpustakaan yang lebih interaktif. Hal ini diharapkan dapat meningkatkan kualitas pelayanan perpustakaan dan mendukung lingkungan belajar yang lebih baik.';
+                    contentImageSrc = ''; // Jika tidak ada gambar untuk kesimpulan, tetap kosong.
+                    break;
+            }
+
+            document.getElementById('content-text').innerText = contentText;
+            if (contentImageSrc) {
+                document.getElementById('content-image').style.display = 'block';
+                document.getElementById('content-image').src = contentImageSrc;
+            } else {
+                document.getElementById('content-image').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
